@@ -18,7 +18,7 @@
 #include "soc/rtc_cntl_reg.h"
 #include "esp_camera.h"
 
-const char* ssid = "SixStars";
+const char* ssid = "TheBigE";
 const char* password = "Ilovewael1968";
 
 String serverName = "thegreengenie.ca";   //REPLACE WITH YOUR DOMAIN NAME
