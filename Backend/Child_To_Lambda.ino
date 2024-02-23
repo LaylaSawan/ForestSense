@@ -8,7 +8,7 @@
 #define TXD2 17 // define the pin number for TXD2
 String incoming; // create a String variable "incoming"
 
-const char* ssid = "SixStars"; // set the SSID of the WiFi network
+const char* ssid = "TheBigE"; // set the SSID of the WiFi network
 const char* password = "Ilovewael1968"; // set the password of the WiFi network
 
 String serverName = "https://y40cmoim0k.execute-api.us-east-2.amazonaws.com/DepA"; // set the server name to the API deployment link
