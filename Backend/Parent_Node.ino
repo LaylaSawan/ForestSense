@@ -19,7 +19,6 @@ int gasPin = 35;
 int sensorValue1 = 0;
 int tempPin = 32;
 int sensorValue2 = 0;
-int humidPin = 33;
 int sensorValue3 = 0;
 // User stub
 void sendMessage();  // Prototype so PlatformIO doesn't complain
@@ -31,7 +30,7 @@ void sendMessage() {
   sensorValue = analogRead(flamePin);
   sensorValue1 = analogRead(gasPin);
   sensorValue2 = analogRead(tempPin);
-  sensorValue3 = analogRead(humidPin);
+  sensorValue3 = analogRead(tempPin);
 
   // Create a JSON document with the node number and MQ-135 value
   DynamicJsonDocument jsonReadings(200);  // 200 is the capacity of the JSON document
