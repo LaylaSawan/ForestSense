@@ -1,11 +1,14 @@
 #include "painlessMesh.h"
 #include <Arduino_JSON.h>
+#include <DHT.h>
 
 // MESH Details
 #define MESH_PREFIX "FireMesh"   // name for my MESH
 #define MESH_PASSWORD "Ilovedad100" // password for my MESH
 #define MESH_PORT 5555           // default port
-
+#define DHTPIN 33     // Pin connected to the DHT sensor
+#define DHTTYPE DHT11   // DHT 11
+DHT dht(DHTPIN, DHTTYPE);
 // Analog pin where MQ-135 sensor is connected
 const int mq135Pin = 35;
 int nodeNumber = 10;
@@ -32,10 +35,10 @@ String getReadings() {
   jsonReadings["flame"] = FlameValue;
   int mq135Value = analogRead(mq135Pin);
   jsonReadings["gas"] = mq135Value;  
-  int tempValue = analogRead(32);
-  jsonReadings["temp"] = tempValue;
-  int humidValue = analogRead(33);
-  jsonReadings["humid"] = humidValue;
+  float humid = dht.readHumidity();
+  float temp = dht.readTemperature(); // Celsius
+  jsonReadings["humid"] = humid;
+  jsonReadings["temp"] = temp; 
 
   readings = JSON.stringify(jsonReadings);
   return readings;
@@ -87,6 +90,7 @@ void setup() {
   mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
   userScheduler.addTask(taskSendMessage);
   taskSendMessage.enable();
+  dht.begin();
 }
 
 void loop() {
